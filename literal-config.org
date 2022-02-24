@@ -62,3 +62,99 @@ Use package needs ~bind-key~
   (use-package magit
     :ensure t)
 #+end_src
+
+*** ace window
+
+#+begin_src emacs-lisp
+  (use-package ace-window
+    :ensure t
+    :init
+    (custom-set-faces
+     '(aw-leading-char-face
+       ((t (:inherit ace-jump-face-foreground
+		     :height 3.0
+		     :foreground "red")))))
+    :bind ("C-x o" . ace-window))
+#+end_src
+
+*** helm descbinds
+
+#+begin_src emacs-lisp
+  (use-package helm-descbinds
+    :bind ("C-h b" . helm-descbinds))
+#+end_src
+
+*** y-or-n
+
+#+begin_src emacs-lisp
+  (fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+*** some shortcuts
+
+#+begin_src emacs-lisp
+  ;; Font size
+  (global-set-key (kbd "C-+") 'text-scale-increase)
+  (global-set-key (kbd "C--") 'text-scale-decrease)
+
+  ;; Window switching. (C-x o goes to the next window)
+  (global-set-key (kbd "C-x O") (lambda ()
+				  (interactive)
+				  (other-window -1))) ;; back one
+
+  ;; toggle menu-bar visibility
+  (global-set-key (kbd "<f12>") 'menu-bar-mode)
+ 
+#+end_src
+
+*** location of customize settings
+  
+Config changes made through the customize UI will be stored here
+
+#+begin_src emacs-lisp
+  (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+  (ignore-errors (load custom-file)) ;; It may not yet exist. 
+#+end_src
+
+*** No splash screen
+
+Don't show splash screen
+
+#+begin_src emacs-lisp
+  (setq inhibit-startup-screen t)  
+#+end_src
+
+*** global ato revert
+
+Revert buffers automatically when underlying files are changed externally
+
+#+begin_src emacs-lisp
+  (global-auto-revert-mode t)
+#+end_src
+
+*** window title
+
+More useful frame title, that show either a file or a buffer name (if the buffer
+isn't visiting a file)
+ 
+#+begin_src emacs-lisp
+  (setq frame-title-format
+	'("" invocation-name " Experimental - " (:eval (if (buffer-file-name)
+							   (abbreviate-file-name (buffer-file-name))
+							 "%b"))))
+#+end_src
+
+*** which key
+
+#+begin_example emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+     (which-key-mode +1))
+#+end_example
+
+*** turn off toolbar
+
+#+begin_src emacs-lisp
+  (tool-bar-mode -1)
+#+end_src
