@@ -5,6 +5,7 @@
   https://github.com/alhassy/emacs.d
 
 ** Config
+
     In init.el we alredy have defined ~init-dir~ folder.
     
 *** define location of Melpa packages 
@@ -25,11 +26,31 @@
     #+end_src
 
 *** load use-package
+
 #+begin_src emacs-lisp
   (require 'package) 
+  (require 'bind-key)
 
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))  
 #+end_src
 
+*** recent files
+
+#+begin_src emacs-lisp
+  (use-package recentf
+    :ensure t
+    :bind ("s-r" . recentf-open-files)
+    :init
+    (recentf-mode)
+    :custom
+    (recentf-max-saved-items 500))
+#+end_src
+
+*** magit
+
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t)
+#+end_src
