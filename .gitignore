@@ -1,0 +1,34 @@
+auto-save-list
+
+# ignore backup files
+*~
+#*#
+
+# ignore tangled files
+literal-config.el
+literal-config.elc
+
+# ignore recent files
+recentf
+
+custom.el
+
+elpa/
+savefile/
+transient/
+url/
+
+projectile-bookmarks.eld
+ido.last
+
+smex-items
+bookmarks
+
+# org mode
+.org-id-locations
+org-roam.db
+
+server/*
+network-security.data
+eshell/history
+eshell/lastdir

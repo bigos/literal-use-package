@@ -1,0 +1,35 @@
+* Literal config
+
+  Other examples can be found here
+  https://github.com/caisah/emacs.dz
+  https://github.com/alhassy/emacs.d
+
+** Config
+    In init.el we alredy have defined ~init-dir~ folder.
+    
+*** define location of Melpa packages 
+
+    Define package source 
+
+    #+begin_src emacs-lisp
+      ;; accessing a package repo over https on Windows may fail, so we can
+      ;; fallback to http there
+      (if (eq system-type 'windows-nt)
+          (add-to-list 'package-archives
+                       '("melpa" . "https://melpa.org/packages/") t)
+        (add-to-list 'package-archives
+                     '("melpa" . "https://melpa.org/packages/") t))
+
+      ;; set package-user-dir to be relative to init.el path
+      (setq package-user-dir (expand-file-name "elpa" init-dir))
+    #+end_src
+
+*** load use-package
+#+begin_src emacs-lisp
+  (require 'package) 
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))  
+#+end_src
+
