@@ -81,6 +81,7 @@ Use package needs ~bind-key~
 
 #+begin_src emacs-lisp
   (use-package helm-descbinds
+    :ensure t
     :bind ("C-h b" . helm-descbinds))
 #+end_src
 
@@ -144,6 +145,25 @@ isn't visiting a file)
 							 "%b"))))
 #+end_src
 
+*** mode flashing on overwrite
+
+#+begin_example emacs-lisp
+  (defun double-flash-mode-line ()
+     (let ((flash-sec (/ 1.0 20)))
+       (invert-face 'mode-line)
+       (run-with-timer flash-sec nil #'invert-face 'mode-line)
+       (run-with-timer (* 2 flash-sec) nil #'invert-face 'mode-line)
+       (run-with-timer (* 3 flash-sec) nil #'invert-face 'mode-line)))
+
+  (add-hook 'overwrite-mode-hook #'(lambda () (double-flash-mode-line)))
+#+end_example
+
+*** turn off toolbar
+
+#+begin_src emacs-lisp
+  (tool-bar-mode -1)
+#+end_src
+
 *** which key
 
 #+begin_example emacs-lisp
@@ -153,8 +173,8 @@ isn't visiting a file)
      (which-key-mode +1))
 #+end_example
 
-*** turn off toolbar
-
+** The end
 #+begin_src emacs-lisp
-  (tool-bar-mode -1)
+  (message
+   "M-x describe-personal-keybindings will show keybindings defined in use-package user configuration.")
 #+end_src
