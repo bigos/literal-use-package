@@ -7,10 +7,10 @@
 ** Config
 
     In init.el we alredy have defined ~init-dir~ folder.
-    
-*** define location of Melpa packages 
 
-    Define package source 
+*** define location of Melpa packages
+
+    Define package source
 
     #+begin_src emacs-lisp
       ;; accessing a package repo over https on Windows may fail, so we can
@@ -28,11 +28,11 @@
 *** load use-package
 
 #+begin_src emacs-lisp
-  (require 'package) 
+  (require 'package)
 
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
-    (package-install 'use-package))  
+    (package-install 'use-package))
 #+end_src
 
 **** bind key
@@ -41,17 +41,17 @@ Use package needs ~bind-key~
 
 #+begin_src emacs-lisp
   (use-package bind-key
-    :ensure t)  
+    :ensure t)
 #+end_src
 
 *** recent files
 
 #+begin_src emacs-lisp
   (use-package recentf
-    :ensure t
+    :ensure nil
     :bind ("s-r" . recentf-open-files)
     :init
-    (recentf-mode)
+    (recentf-mode 1)
     :custom
     (recentf-max-saved-items 500))
 #+end_src
@@ -105,16 +105,16 @@ Use package needs ~bind-key~
 
   ;; toggle menu-bar visibility
   (global-set-key (kbd "<f12>") 'menu-bar-mode)
- 
+
 #+end_src
 
 *** location of customize settings
-  
+
 Config changes made through the customize UI will be stored here
 
 #+begin_src emacs-lisp
   (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-  (ignore-errors (load custom-file)) ;; It may not yet exist. 
+  (ignore-errors (load custom-file)) ;; It may not yet exist.
 #+end_src
 
 *** No splash screen
@@ -122,7 +122,7 @@ Config changes made through the customize UI will be stored here
 Don't show splash screen
 
 #+begin_src emacs-lisp
-  (setq inhibit-startup-screen t)  
+  (setq inhibit-startup-screen t)
 #+end_src
 
 *** global ato revert
@@ -137,7 +137,7 @@ Revert buffers automatically when underlying files are changed externally
 
 More useful frame title, that show either a file or a buffer name (if the buffer
 isn't visiting a file)
- 
+
 #+begin_src emacs-lisp
   (setq frame-title-format
 	'("" invocation-name " Experimental - " (:eval (if (buffer-file-name)
