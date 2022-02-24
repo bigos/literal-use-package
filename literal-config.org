@@ -29,11 +29,19 @@
 
 #+begin_src emacs-lisp
   (require 'package) 
-  (require 'bind-key)
 
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))  
+#+end_src
+
+**** bind key
+
+Use package needs ~bind-key~
+
+#+begin_src emacs-lisp
+  (use-package bind-key
+    :ensure t)  
 #+end_src
 
 *** recent files

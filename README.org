@@ -1,4 +1,4 @@
 * Literal use-package
 
 This is attempt to create a basic Emacs config that will work with Emacs 27.2+
-and work with basic on restricted Windows.
+and work on restricted Windows.
