@@ -44,21 +44,6 @@ Use package needs ~bind-key~
     :ensure t)
 #+end_src
 
-*** folders
-    Here we define some folders
-    
-    #+begin_src emacs-lisp
-      (defvar experimental-modules-dir (expand-file-name  "modules" init-dir)
-	"This is the folder for Experimental modules.")
-
-      (add-to-list 'load-path experimental-modules-dir )
-    #+end_src
-
-    and add defined folders to load-path
-
-    #+begin_src emacs-lisp
-      (add-to-list 'load-path experimental-modules-dir)
-    #+end_src
 *** recent files
 
 #+begin_src emacs-lisp
@@ -190,19 +175,15 @@ isn't visiting a file)
 
 *** verse autocompletion
     #+begin_src emacs-lisp
-      (use-package ido-completing-read+
-	:ensure t)
-
-      (require 'jacek-verse)
-
       (use-package jacek-verse
-	:ensure nil
-	:requires (ido-completing-read+ parsec)  
-	:bind ([f5] . verse-link)
-	:init
-	)
+        :ensure nil
+        :load-path "~/.emacs.d/modules"
+        :requires (ido-completing-read+ parsec)
+        :bind ([f5] . verse-link)
+        :init
+        )
     #+end_src
-    
+
 ** The end
 #+begin_src emacs-lisp
   (message
