@@ -179,7 +179,7 @@ isn't visiting a file)
         :ensure nil
         :load-path "~/.emacs.d/modules"
         :requires (ido-completing-read+ parsec)
-        :bind ([f5] . verse-link)
+        :bind ("<f5>" . verse-link)
         :init
         )
     #+end_src
