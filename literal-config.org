@@ -8,23 +8,6 @@
 
     In init.el we alredy have defined ~init-dir~ folder.
 
-*** define location of Melpa packages
-
-    Define package source
-
-    #+begin_src emacs-lisp
-      ;; accessing a package repo over https on Windows may fail, so we can
-      ;; fallback to http there
-      (if (eq system-type 'windows-nt)
-          (add-to-list 'package-archives
-                       '("melpa" . "https://melpa.org/packages/") t)
-        (add-to-list 'package-archives
-                     '("melpa" . "https://melpa.org/packages/") t))
-
-      ;; set package-user-dir to be relative to init.el path
-      (setq package-user-dir (expand-file-name "elpa" init-dir))
-    #+end_src
-
 *** load use-package
 
 #+begin_src emacs-lisp
@@ -33,6 +16,8 @@
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)
     (package-install 'use-package))
+  (eval-when-compile
+    (require 'use-package))
 #+end_src
 
 **** bind key
@@ -175,13 +160,19 @@ isn't visiting a file)
 
 *** verse autocompletion
     #+begin_src emacs-lisp
-      ;; (use-package jacek-verse
-      ;;   :ensure nil
-      ;;   :load-path "~/.emacs.d/modules"
-      ;;   :requires (ido-mode ido-everywhere parsec)
-      ;;   :bind ("<f5>" . verse-link)
-      ;;   :init
-      ;;   )
+      (use-package parsec
+	:ensure t)
+
+      (use-package ido-completing-read+
+	:ensure t)
+
+      (use-package jacek-verse
+	:ensure nil
+	:load-path "~/.emacs.d/modules"
+	:requires (parsec ido-completing-read+)
+	:bind ("<f5>" . verse-link)
+	:init
+	)
     #+end_src
 
 ** The end
