@@ -12,12 +12,11 @@
 ;; set package-user-dir to be relative to init.el path
 (setq package-user-dir (expand-file-name "elpa" init-dir))
 
-
 (defvar org-config (expand-file-name "literal-config.org" init-dir)
   "Path to the literal configuration..")
-(defvar elc-config (expand-file-name "literal-config.elc" init-dir)
-  "Path to the tangled and compiled configuration.")
 
+;; because org config may fail, we set Melpa archive and folders in the above
+;; this comment
 (org-babel-load-file (expand-file-name org-config  user-emacs-directory) t)
-(load-file elc-config)
+
 
