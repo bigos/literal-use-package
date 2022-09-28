@@ -175,13 +175,13 @@ isn't visiting a file)
 
 *** verse autocompletion
     #+begin_src emacs-lisp
-      (use-package jacek-verse
-        :ensure nil
-        :load-path "~/.emacs.d/modules"
-        :requires (ido-completing-read+ parsec)
-        :bind ("<f5>" . verse-link)
-        :init
-        )
+      ;; (use-package jacek-verse
+      ;;   :ensure nil
+      ;;   :load-path "~/.emacs.d/modules"
+      ;;   :requires (ido-mode ido-everywhere parsec)
+      ;;   :bind ("<f5>" . verse-link)
+      ;;   :init
+      ;;   )
     #+end_src
 
 ** The end
