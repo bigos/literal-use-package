@@ -93,8 +93,9 @@
 
 (defun verse-books-numbered ()
   "Bible books with numbers."
-  (let ((c 0))
-    (-map (lambda (x) (incf c) (cons c x)) (verse-books))))
+  (-zip
+   (number-sequence 0 (length (verse-books)))
+   (verse-books)))
 
 
 ;; (load "~/.emacs.d/modules/jacek-verse.el")
@@ -142,7 +143,7 @@
 (defun verse-page-link (book-name chapter verse initial-spaces final-spaces)
   "Take strings BOOK-NAME CHAPTER and VERSE to create a string for org link obeying the INITIAL-SPACES and FINAL-SPACES."
   (let ((book-name-number (caar (-filter (lambda (x)
-                                           (equalp book-name (cadr x)))
+                                           (cl-equalp book-name (cadr x)))
                                          (verse-books-numbered)))))
     (format "%s[[https://wol.jw.org/en/wol/b/r1/lp-e/nwtsty/%d/%s#v=%d:%s:%s][%s %s:%s]]%s"
             initial-spaces
