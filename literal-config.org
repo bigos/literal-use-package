@@ -44,8 +44,8 @@ Use package needs ~bind-key~
 *** magit
 
 #+begin_src emacs-lisp
-  (use-package magit
-    :ensure t)
+  ;; (use-package magit
+  ;;   :ensure t)
 #+end_src
 
 *** ace window
