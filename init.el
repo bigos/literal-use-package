@@ -1,5 +1,6 @@
 ;; accessing a package repo over https on Windows may fail, so we can
 ;; fallback to http there
+(require 'package)
 (if (eq system-type 'windows-nt)
     (add-to-list 'package-archives
                  '("melpa" . "https://melpa.org/packages/") t)
@@ -18,5 +19,3 @@
 ;; because org config may fail, we set Melpa archive and folders in the above
 ;; this comment
 (org-babel-load-file (expand-file-name org-config  user-emacs-directory) t)
-
-
