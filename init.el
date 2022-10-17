@@ -18,4 +18,4 @@
 
 ;; because org config may fail, we set Melpa archive and folders in the above
 ;; this comment
-(org-babel-load-file (expand-file-name org-config  user-emacs-directory) t)
+(org-babel-load-file (expand-file-name org-config  user-emacs-directory))
